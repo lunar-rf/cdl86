@@ -7,7 +7,7 @@
 > [`cs2rec`](https://github.com/FASTCUP/cs2rec)
 
 # Abstract
-`cdl86` is a tiny, single file, cross platform `detours` library written in `C`.
+`cdl86` is a tiny, single file, cross platform `detours` library written in `C` in less than `1K` lines.
 
 [`https://journal.lunar.sh/2022/linux-detours.html`](https://journal.lunar.sh/2022/linux-detours.html)
 
