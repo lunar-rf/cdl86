@@ -116,11 +116,11 @@ Folders:
 | |____\___/|_|\_/_/ \_\_|_(_)___/_||_| |
 |                                       |
 |                                       |
-| Lunar RF Labs                         |
+| Lunar Labs                            |
 | https://lunar.sh                      |
 |                                       |
-| RF Research Laboratories              |
-| Copyright (C) 2022-2024               |
+| Research Laboratories                 |
+| Copyright (C) 2022-2025               |
 |                                       |
 +---------------------------------------+
 ```
