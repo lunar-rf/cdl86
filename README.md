@@ -3,7 +3,7 @@
 `cdl86` - `Compact Detours Library 86`
 
 > **Demo Projects** <br>
-> [`gsctool`](https://github.com/lunarjournal/gsctool)
+> [`gsctool`](https://github.com/lunar-sh/gsctool)
 > [`cs2rec`](https://github.com/FASTCUP/cs2rec)
 
 # Abstract
@@ -90,7 +90,7 @@ To dump `debug` info from the `cdl_jmp_patch` struct use `cdl_jmp_dbg`.
 
 # Info
 
-The compiler used for this project is [`tcc`](https://github.com/lunarjournal/tcc).
+The compiler used for this project is [`tcc`](https://github.com/lunar-sh/tcc).
 
 Files:
 <br/>
