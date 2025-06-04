@@ -113,6 +113,13 @@
 /* General : reserve bytes */
 #define BYTES_RESERVE_MAX 20
 
+/* extern "C" */
+#ifdef __cplusplus
+#define EXTERN_C extern "C"
+#else
+#define EXTERN_C
+#endif
+
 /**
  * Intruction probe struct
  *
@@ -196,7 +203,7 @@ struct cdl_swbp_patch cdl_swbp_attach(
  *
  * @param jmp_patch pointer to cdl_jmp_patch struct.
  */
-void cdl_jmp_detach(
+EXTERN_C void cdl_jmp_detach(
     __in_out struct cdl_jmp_patch* jmp_patch
 );
 
@@ -205,7 +212,7 @@ void cdl_jmp_detach(
  *
  * @param swbp_patch pointer to cdl_swbp_patch struct.
  */
-void cdl_swbp_detach(
+EXTERN_C void cdl_swbp_detach(
    __in_out  struct cdl_swbp_patch* swbp_patch
 );
 
@@ -214,7 +221,7 @@ void cdl_swbp_detach(
  *
  * @param jmp_patch pointer to cdl_jmp_patch struct.
  */
-void cdl_jmp_dbg(
+EXTERN_C void cdl_jmp_dbg(
     __in struct cdl_jmp_patch* jmp_patch
 );
 
@@ -223,7 +230,7 @@ void cdl_jmp_dbg(
  *
  * @param jmp_patch pointer to cdl_swbp_patch struct.
  */
-void cdl_swbp_dbg(
+EXTERN_C void cdl_swbp_dbg(
     __in struct cdl_swbp_patch* swbp_patch
 );
 
