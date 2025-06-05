@@ -182,7 +182,7 @@ struct cdl_swbp_patch
  * @param target pointer to function pointer to function to hook.
  * @param detour function pointer to detour function
  */
-struct cdl_jmp_patch cdl_jmp_attach(
+EXTERN_C struct cdl_jmp_patch cdl_jmp_attach(
     __in_out void** target,
     __in void* detour
 );
@@ -193,7 +193,7 @@ struct cdl_jmp_patch cdl_jmp_attach(
  * @param target pointer to function pointer to function to hook.
  * @param detour function pointer to detour function
  */
-struct cdl_swbp_patch cdl_swbp_attach(
+EXTERN_C struct cdl_swbp_patch cdl_swbp_attach(
     __in_out void** target,
     __in void* detour
 );
