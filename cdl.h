@@ -53,71 +53,18 @@
 #ifndef CDL_H
 #define CDL_H
 
-#define _GNU_SOURCE
-
-/* Global includes */
-#include <stdio.h>
-#include <stdlib.h>
 #include <stdbool.h>
-#include <inttypes.h>
 #include <stdint.h>
-#include <stddef.h>
-#include <string.h>
-
-#ifdef _WIN32
-#include <windows.h>
-#else
-#include <dlfcn.h>
-#include <unistd.h>
-#include <sys/mman.h>
-#include <sys/user.h>
-#include <signal.h>
-#include <ucontext.h>
-#endif
 
 #define __in
 #define __out
 #define __in_out
 
-/* Determine CPU type */
-/* Check MSVC */
-#if _WIN32 || _WIN64
-#if _WIN64
-#define ENV_64
-#else
-#define ENV_32
-#endif
-#else
-/* Check other compilers */
-#if __x86_64__
-#define ENV_64
-#else
-#define ENV_32
-#endif
-#endif
-
-/* Set ARCH flags */
-#ifdef ENV_64
-#define REG_IP REG_RIP
-#define BYTES_JMP_PATCH 12
-#define PTR_SIZE PRIx64
-#else
-#define REG_IP REG_EIP
-#define BYTES_JMP_PATCH 5
-#define PTR_SIZE PRIx32
-#endif
-
-/* Define SW BP patch length, see (cdl_gen_swbp) */
-#define BYTES_SWBP_PATCH 1
-
-/* General : reserve bytes */
-#define BYTES_RESERVE_MAX 20
-
 /* extern "C" */
 #ifdef __cplusplus
-#define EXTERN_C extern "C"
+#define CDL86_EXTERN_C extern "C"
 #else
-#define EXTERN_C
+#define CDL86_EXTERN_C
 #endif
 
 /**
@@ -182,7 +129,7 @@ struct cdl_swbp_patch
  * @param target pointer to function pointer to function to hook.
  * @param detour function pointer to detour function
  */
-EXTERN_C struct cdl_jmp_patch cdl_jmp_attach(
+CDL86_EXTERN_C struct cdl_jmp_patch cdl_jmp_attach(
     __in_out void** target,
     __in void* detour
 );
@@ -193,7 +140,7 @@ EXTERN_C struct cdl_jmp_patch cdl_jmp_attach(
  * @param target pointer to function pointer to function to hook.
  * @param detour function pointer to detour function
  */
-EXTERN_C struct cdl_swbp_patch cdl_swbp_attach(
+CDL86_EXTERN_C struct cdl_swbp_patch cdl_swbp_attach(
     __in_out void** target,
     __in void* detour
 );
@@ -203,7 +150,7 @@ EXTERN_C struct cdl_swbp_patch cdl_swbp_attach(
  *
  * @param jmp_patch pointer to cdl_jmp_patch struct.
  */
-EXTERN_C void cdl_jmp_detach(
+CDL86_EXTERN_C void cdl_jmp_detach(
     __in_out struct cdl_jmp_patch* jmp_patch
 );
 
@@ -212,7 +159,7 @@ EXTERN_C void cdl_jmp_detach(
  *
  * @param swbp_patch pointer to cdl_swbp_patch struct.
  */
-EXTERN_C void cdl_swbp_detach(
+CDL86_EXTERN_C void cdl_swbp_detach(
    __in_out  struct cdl_swbp_patch* swbp_patch
 );
 
@@ -221,7 +168,7 @@ EXTERN_C void cdl_swbp_detach(
  *
  * @param jmp_patch pointer to cdl_jmp_patch struct.
  */
-EXTERN_C void cdl_jmp_dbg(
+CDL86_EXTERN_C void cdl_jmp_dbg(
     __in struct cdl_jmp_patch* jmp_patch
 );
 
@@ -230,7 +177,7 @@ EXTERN_C void cdl_jmp_dbg(
  *
  * @param jmp_patch pointer to cdl_swbp_patch struct.
  */
-EXTERN_C void cdl_swbp_dbg(
+CDL86_EXTERN_C void cdl_swbp_dbg(
     __in struct cdl_swbp_patch* swbp_patch
 );
 
