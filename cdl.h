@@ -53,7 +53,9 @@
 #ifndef CDL_H
 #define CDL_H
 
+#ifndef _GNU_SOURCE
 #define _GNU_SOURCE
+#endif
 
 /* Global includes */
 #include <stdio.h>
