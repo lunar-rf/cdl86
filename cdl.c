@@ -50,7 +50,61 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#define _GNU_SOURCE
+
 #include "cdl.h"
+
+/* Global includes */
+#include <stdio.h>
+#include <stdlib.h>
+#include <inttypes.h>
+#include <stddef.h>
+#include <string.h>
+
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <dlfcn.h>
+#include <unistd.h>
+#include <sys/mman.h>
+#include <sys/user.h>
+#include <signal.h>
+#include <ucontext.h>
+#endif
+
+/* Determine CPU type */
+/* Check MSVC */
+#if _WIN32 || _WIN64
+#if _WIN64
+#define ENV_64
+#else
+#define ENV_32
+#endif
+#else
+/* Check other compilers */
+#if __x86_64__
+#define ENV_64
+#else
+#define ENV_32
+#endif
+#endif
+
+/* Set ARCH flags */
+#ifdef ENV_64
+#define REG_IP REG_RIP
+#define BYTES_JMP_PATCH 12
+#define PTR_SIZE PRIx64
+#else
+#define REG_IP REG_EIP
+#define BYTES_JMP_PATCH 5
+#define PTR_SIZE PRIx32
+#endif
+
+/* Define SW BP patch length, see (cdl_gen_swbp) */
+#define BYTES_SWBP_PATCH 1
+
+/* General : reserve bytes */
+#define BYTES_RESERVE_MAX 20
 
 /**
  * Software breakpoint initialization.
